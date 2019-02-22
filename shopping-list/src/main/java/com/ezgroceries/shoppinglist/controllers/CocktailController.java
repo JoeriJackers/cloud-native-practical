@@ -3,12 +3,10 @@ package com.ezgroceries.shoppinglist.controllers;
 import com.ezgroceries.shoppinglist.clients.CocktailDBClient;
 import com.ezgroceries.shoppinglist.models.CocktailDBResponse;
 import com.ezgroceries.shoppinglist.models.CocktailResource;
-import com.ezgroceries.shoppinglist.models.Todo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/cocktails", produces = "application/json")
