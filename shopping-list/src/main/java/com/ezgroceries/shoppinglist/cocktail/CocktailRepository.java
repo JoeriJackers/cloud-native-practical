@@ -1,7 +1,6 @@
 package com.ezgroceries.shoppinglist.cocktail;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.CrudRepository;
+import java.util.UUID;
 
-public interface CocktailRepository extends Repository<Cocktail, Long> {
-    public Cocktail findByName(String name);
-}
+public interface CocktailRepository extends CrudRepository<Cocktail, UUID> {}

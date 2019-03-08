@@ -37,11 +37,6 @@ public class ShoppingListController {
     @ResponseStatus(HttpStatus.OK)
     public ShoppingListResource getShoppingListById(@PathVariable String listId) {
         return shoppingListService.findById(UUID.fromString(listId));
-//        return new ShoppingListResource(
-//                 UUID.fromString("90689338-499a-4c49-af90-f1e73068ad4f"),
-//                "Stephanie's Birthday",
-//                 Arrays.asList("Tequila", "Triple Sec", "Lime Juice", "Salt", "Blue Curacao")
-//        );
     }
 
     @PostMapping(value = "/{listId}/cocktails")

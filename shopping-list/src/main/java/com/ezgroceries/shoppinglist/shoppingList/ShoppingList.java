@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.UUID;
 
 
-@Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "shopping_list")
 public class ShoppingList {
     @Id
