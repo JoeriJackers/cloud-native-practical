@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.models;
+package com.ezgroceries.shoppinglist.shoppingList;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -9,9 +9,12 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
+@JsonInclude(Include.NON_NULL)
 @AllArgsConstructor
 public class ShoppingListResource {
-    @Getter @Setter private UUID shoppingListId;
-    @Getter private String name;
-    @Getter @JsonInclude(Include.NON_NULL) private List<String> ingredients;
+    private UUID shoppingListId;
+    private final String name;
+    private final List<String> ingredients;
 }

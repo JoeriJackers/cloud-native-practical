@@ -1,8 +1,8 @@
-package com.ezgroceries.shoppinglist.controllers;
+package com.ezgroceries.shoppinglist.cocktail.web;
 
 import com.ezgroceries.shoppinglist.clients.CocktailDBClient;
-import com.ezgroceries.shoppinglist.models.CocktailDBResponse;
-import com.ezgroceries.shoppinglist.models.CocktailResource;
+import com.ezgroceries.shoppinglist.cocktail.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.cocktail.CocktailResource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;

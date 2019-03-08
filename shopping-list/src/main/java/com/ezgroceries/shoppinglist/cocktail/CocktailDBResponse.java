@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.models;
+package com.ezgroceries.shoppinglist.cocktail;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,16 +20,18 @@ public class CocktailDBResponse {
         return cocktails;
     }
 
+    @Getter
+    @Setter
     public static class DrinkResource {
-        @Getter @Setter private String idDrink;
-        @Getter @Setter private String strDrink;
-        @Getter @Setter private String strGlass;
-        @Getter @Setter private String strInstructions;
-        @Getter @Setter private String strDrinkThumb;
-        @Getter @Setter private String strIngredient1;
-        @Getter @Setter private String strIngredient2;
-        @Getter @Setter private String strIngredient3;
-        @Getter @Setter private String strIngredient4;
+        private String idDrink;
+        private String strDrink;
+        private String strGlass;
+        private String strInstructions;
+        private String strDrinkThumb;
+        private String strIngredient1;
+        private String strIngredient2;
+        private String strIngredient3;
+        private String strIngredient4;
 
         public CocktailResource mapToCocktail() {
             return new CocktailResource(idDrink, strDrink, strGlass, strInstructions, strDrinkThumb, Arrays.asList(strIngredient1, strIngredient2, strIngredient3, strIngredient4));
