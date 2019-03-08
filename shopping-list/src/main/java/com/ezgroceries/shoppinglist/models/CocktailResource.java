@@ -2,22 +2,17 @@ package com.ezgroceries.shoppinglist.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import lombok.Getter;
 
 import java.util.List;
-import java.util.UUID;
 
 public class CocktailResource {
-    private String cocktailId;
-    @JsonInclude(Include.NON_NULL)
-    private String name;
-    @JsonInclude(Include.NON_NULL)
-    private String glass;
-    @JsonInclude(Include.NON_NULL)
-    private String instructions;
-    @JsonInclude(Include.NON_NULL)
-    private String image;
-    @JsonInclude(Include.NON_NULL)
-    private List<String> ingredients;
+    @Getter private String cocktailId;
+    @Getter @JsonInclude(Include.NON_NULL) private String name;
+    @Getter @JsonInclude(Include.NON_NULL) private String glass;
+    @Getter @JsonInclude(Include.NON_NULL) private String instructions;
+    @Getter @JsonInclude(Include.NON_NULL) private String image;
+    @Getter @JsonInclude(Include.NON_NULL) private List<String> ingredients;
 
     public CocktailResource(String cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
         this.cocktailId = cocktailId;
@@ -26,30 +21,5 @@ public class CocktailResource {
         this.instructions = instructions;
         this.image = image;
         this.ingredients = ingredients;
-    }
-
-    public String getCocktailId() {
-        return cocktailId;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public String getGlass() {
-        return glass;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public List<String> getIngredients() {
-        return ingredients;
     }
 }
