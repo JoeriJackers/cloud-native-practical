@@ -2,6 +2,8 @@ package com.ezgroceries.shoppinglist.shoppingList;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ShoppingListRepository extends CrudRepository<ShoppingList, Long> {
+import java.util.UUID;
+
+public interface ShoppingListRepository extends CrudRepository<ShoppingList, UUID> {
     public ShoppingList findByName(String name);
 }
