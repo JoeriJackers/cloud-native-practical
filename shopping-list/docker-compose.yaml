@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    hostname: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - "5432:5432"
+
+  api:
+    image: shopping-list:0.0.1-SNAPSHOT
+    hostname: api-server
+    container_name: api-server
+    ports:
+      - "8080:8080"
