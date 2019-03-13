@@ -25,22 +25,41 @@ public class CocktailShoppingListService {
         this.shoppingListService = shoppingListService;
     }
 
+    public List<ShoppingListResource> getAllShoppingLists() {
+        List<ShoppingListResource> shoppingListResources = shoppingListService.getAllShoppingLists();
+        return shoppingListResources.stream()
+                .map(list -> getShoppingList(list.getShoppingListId().toString()))
+                .collect(Collectors.toList());
+    }
+
+    public ShoppingListResource getShoppingList(String shoppingListId) {
+        UUID shoppingListUUID = UUID.fromString(shoppingListId);
+        ShoppingListResource shoppingListResource = shoppingListService.findById(shoppingListUUID);
+
+        List<CocktailShoppingList> cocktailShoppingLists = cocktailShoppingListRepository.findCocktailShoppingListsByShoppingListId(shoppingListUUID);
+        List<List<String>> allIngredients = new ArrayList<>();
+
+        cocktailShoppingLists.stream()
+                .forEach(cocktailShoppingList -> allIngredients.add(cocktailService.findById(cocktailShoppingList.getCocktailId()).getIngredients()));
+
+        Set<String> allIngredientsFlat = allIngredients.stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
+
+        shoppingListResource.setIngredients(new ArrayList<>(allIngredientsFlat));
+        return shoppingListResource;
+    }
+
     public void addCocktailsToShoppingList(String shoppingListId, List<CocktailResource> cocktailResources) {
         UUID shoppingListUUID = UUID.fromString(shoppingListId);
         List<CocktailShoppingList> cocktailShoppingLists = new ArrayList<>();
         List<CocktailResource> cocktails = cocktailResources.stream()
-                .map(cocktail -> cocktailService.findByIdDrink(cocktail.getCocktailId()))
+                .map(cocktail -> cocktailService.findById(cocktail.getId()))
                 .collect(Collectors.toList());
 
-       cocktails.stream()
-                .forEach(cocktail -> cocktailShoppingLists.add(new CocktailShoppingList(shoppingListUUID, UUID.fromString(cocktail.getCocktailId()))));
-//
-//        Set<String> uniqueIngredients = cocktails.stream()
-//                .map(cocktail -> cocktail.getIngredients())
-//                .flatMap(Collection::stream)
-//                .collect(Collectors.toSet());
+        cocktails.stream()
+                .forEach(cocktail -> cocktailShoppingLists.add(new CocktailShoppingList(cocktail.getId(), shoppingListUUID)));
 
-//        cocktailResources.forEach(cocktail -> cocktailShoppingLists.add(new CocktailShoppingList(shoppingListUUID, cocktail.getCocktailId())));
         cocktailShoppingListRepository.saveAll(cocktailShoppingLists);
     }
 }

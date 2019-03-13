@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,13 +32,13 @@ public class ShoppingListController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ShoppingListResource> getAllShoppingLists() {
-        return shoppingListService.getAllShoppingLists();
+        return cocktailShoppingListService.getAllShoppingLists();
     }
 
     @GetMapping(value = "/{listId}")
     @ResponseStatus(HttpStatus.OK)
     public ShoppingListResource getShoppingListById(@PathVariable String listId) {
-        return shoppingListService.findById(UUID.fromString(listId));
+        return cocktailShoppingListService.getShoppingList(listId);
     }
 
     @PostMapping(value = "/{listId}/cocktails")

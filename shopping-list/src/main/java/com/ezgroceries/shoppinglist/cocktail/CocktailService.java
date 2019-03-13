@@ -5,10 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -29,9 +26,9 @@ public class CocktailService {
                 .collect(Collectors.toList());
     }
 
-    public CocktailResource findByIdDrink(String idDrink) {
-        Cocktail cocktail = cocktailRepository.findByIdDrink(idDrink);
-        return cocktail.mapToCocktailResource();
+    public CocktailResource findById(UUID idDrink) {
+        Optional<Cocktail> cocktail = cocktailRepository.findById(idDrink);
+        return cocktail.orElse(new Cocktail()).mapToCocktailResource();
     }
 
     public List<CocktailResource> mergeCocktails(List<CocktailResource> clientCocktails) {
