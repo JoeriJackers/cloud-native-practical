@@ -16,5 +16,5 @@ import java.util.UUID;
 public class ShoppingListResource {
     private UUID shoppingListId;
     private final String name;
-    private final List<String> ingredients;
+    private List<String> ingredients;
 }

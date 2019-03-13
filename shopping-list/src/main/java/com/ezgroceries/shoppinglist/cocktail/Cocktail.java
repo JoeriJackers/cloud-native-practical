@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,13 +29,18 @@ public class Cocktail {
     private Set<String> ingredients;
 
     public CocktailResource mapToCocktailResource() {
+        List<String> ingr = new ArrayList<>();
+        if (!ingredients.isEmpty()) {
+            ingr = new ArrayList<>(ingredients);
+        }
         return new CocktailResource(
+                id,
                 idDrink,
                 name,
                 "",
                 "",
                 "",
-                new ArrayList<String>()
+                ingr
         );
     }
 }

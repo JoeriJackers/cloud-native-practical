@@ -1,6 +1,7 @@
 package com.ezgroceries.shoppinglist.shoppingList.web;
 
 import com.ezgroceries.shoppinglist.cocktail.CocktailResource;
+import com.ezgroceries.shoppinglist.cocktailShoppingList.CocktailShoppingListService;
 import com.ezgroceries.shoppinglist.shoppingList.ShoppingListResource;
 import com.ezgroceries.shoppinglist.shoppingList.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,13 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/shopping-lists")
 public class ShoppingListController {
-    ShoppingListService shoppingListService;
+    private ShoppingListService shoppingListService;
+    private CocktailShoppingListService cocktailShoppingListService;
 
     @Autowired
-    public ShoppingListController(ShoppingListService shoppingListService) {
+    public ShoppingListController(ShoppingListService shoppingListService, CocktailShoppingListService cocktailShoppingListService) {
         this.shoppingListService = shoppingListService;
+        this.cocktailShoppingListService = cocktailShoppingListService;
     }
 
     @PostMapping
@@ -41,7 +44,8 @@ public class ShoppingListController {
 
     @PostMapping(value = "/{listId}/cocktails")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<CocktailResource> createSimpleCocktail(@PathVariable String listId, @RequestBody List<CocktailResource> cocktails) {
-        return cocktails;
+    public ShoppingListResource createSimpleCocktail(@PathVariable String listId, @RequestBody List<CocktailResource> cocktails) {
+        cocktailShoppingListService.addCocktailsToShoppingList(listId, cocktails);
+        return shoppingListService.findById(UUID.fromString(listId));
     }
 }
