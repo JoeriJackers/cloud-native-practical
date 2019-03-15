@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 @AllArgsConstructor
 public class ShoppingListResource {
     private UUID shoppingListId;

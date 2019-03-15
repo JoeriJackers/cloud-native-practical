@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
 
 @Getter
-@JsonInclude(Include.NON_NULL)
+@Setter
+@JsonInclude(Include.NON_EMPTY)
 @AllArgsConstructor
 public class CocktailResource {
     private UUID id;

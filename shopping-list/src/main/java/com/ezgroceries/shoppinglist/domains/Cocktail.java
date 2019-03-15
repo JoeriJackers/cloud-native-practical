@@ -5,15 +5,14 @@ import com.ezgroceries.shoppinglist.helper.StringSetConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -29,18 +28,10 @@ public class Cocktail {
     private Set<String> ingredients;
 
     public CocktailResource mapToCocktailResource() {
-        List<String> ingr = new ArrayList<>();
-        if (!ingredients.isEmpty()) {
-            ingr = new ArrayList<>(ingredients);
-        }
-        return new CocktailResource(
-                id,
-                idDrink,
-                name,
-                "",
-                "",
-                "",
-                ingr
-        );
+        CocktailResource cocktailResource = new CocktailResource(id, idDrink, name, "", "", "", Collections.emptyList());
+        if (ingredients.isEmpty()) { return cocktailResource; }
+
+        cocktailResource.setIngredients(new ArrayList<>(ingredients));
+        return cocktailResource;
     }
 }

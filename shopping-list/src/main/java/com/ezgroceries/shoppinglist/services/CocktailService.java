@@ -4,7 +4,6 @@ import com.ezgroceries.shoppinglist.domains.Cocktail;
 import com.ezgroceries.shoppinglist.repositories.CocktailRepository;
 import com.ezgroceries.shoppinglist.domains.CocktailResource;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -35,11 +34,10 @@ public class CocktailService {
         List<Cocktail> newCocktails = clientCocktails.stream()
                 .filter(cocktail -> knownIds.indexOf(cocktail.getCocktailId()) < 0)
                 .map(cocktail -> {
-                    Set<String> ingr = new HashSet<>();
-                    if (!cocktail.getIngredients().isEmpty()) {
-                        ingr = new HashSet(cocktail.getIngredients());
-                    }
-                    return new Cocktail(null, cocktail.getCocktailId(), cocktail.getName(), ingr);
+                    Cocktail newCocktail = new Cocktail(null, cocktail.getCocktailId(), cocktail.getName(), Collections.emptySet());
+                    if (cocktail.getIngredients().isEmpty()) { return newCocktail; }
+                    newCocktail.setIngredients(new HashSet<>(cocktail.getIngredients()));
+                    return newCocktail;
                 })
                 .collect(Collectors.toList());
 

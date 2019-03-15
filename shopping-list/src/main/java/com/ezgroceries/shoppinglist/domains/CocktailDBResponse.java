@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,10 +14,7 @@ public class CocktailDBResponse {
     @Getter @Setter private List<DrinkResource> drinks;
 
     public List<CocktailResource> getCocktails() {
-        if (drinks == null) {
-            log.debug("No cocktails matching search criteria");
-            return new ArrayList<>();
-        }
+        if (drinks.isEmpty()) { return Collections.emptyList(); }
 
         return drinks.stream()
                 .map(DrinkResource::mapToCocktail)

@@ -26,16 +26,14 @@ public class ShoppingListService {
     public List<ShoppingListResource> getAllShoppingLists() {
         Iterable<ShoppingList> shoppingLists = shoppingListRepository.findAll();
         return StreamSupport.stream(shoppingLists.spliterator(), true)
-                .map(ShoppingList::mapToShoppingListResource)
+                .map(ShoppingListService::mapToShoppingListResource)
                 .collect(Collectors.toList());
     }
 
     public ShoppingListResource findById(UUID id) {
-        Optional<ShoppingList> shoppingList = shoppingListRepository.findById(id);
-        if (shoppingList.isPresent()) {
-            return mapToShoppingListResource(shoppingList.get());
-        }
-        return null;
+        return shoppingListRepository.findById(id)
+                .map(ShoppingListService::mapToShoppingListResource)
+                .orElseGet(null);
     }
 
     public void addCocktailsToShoppingList(String shoppingListId, List<CocktailResource> cocktailResources) {
