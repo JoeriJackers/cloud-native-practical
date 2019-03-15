@@ -1,7 +1,6 @@
 package com.ezgroceries.shoppinglist.controllers;
 
 import com.ezgroceries.shoppinglist.domains.CocktailResource;
-import com.ezgroceries.shoppinglist.services.CocktailShoppingListService;
 import com.ezgroceries.shoppinglist.domains.ShoppingListResource;
 import com.ezgroceries.shoppinglist.services.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,10 @@ import java.util.UUID;
 @RequestMapping(value = "/shopping-lists")
 public class ShoppingListController {
     private final ShoppingListService shoppingListService;
-    private final CocktailShoppingListService cocktailShoppingListService;
 
     @Autowired
-    public ShoppingListController(ShoppingListService shoppingListService, CocktailShoppingListService cocktailShoppingListService) {
+    public ShoppingListController(ShoppingListService shoppingListService) {
         this.shoppingListService = shoppingListService;
-        this.cocktailShoppingListService = cocktailShoppingListService;
     }
 
     @PostMapping
@@ -32,19 +29,19 @@ public class ShoppingListController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ShoppingListResource> getAllShoppingLists() {
-        return cocktailShoppingListService.getAllShoppingLists();
+        return shoppingListService.getAllShoppingLists();
     }
 
     @GetMapping(value = "/{listId}")
     @ResponseStatus(HttpStatus.OK)
     public ShoppingListResource getShoppingListById(@PathVariable String listId) {
-        return cocktailShoppingListService.getShoppingList(listId);
+        return shoppingListService.findById(UUID.fromString(listId));
     }
 
     @PostMapping(value = "/{listId}/cocktails")
     @ResponseStatus(HttpStatus.CREATED)
     public ShoppingListResource createSimpleCocktail(@PathVariable String listId, @RequestBody List<CocktailResource> cocktails) {
-        cocktailShoppingListService.addCocktailsToShoppingList(listId, cocktails);
+        shoppingListService.addCocktailsToShoppingList(listId, cocktails);
         return shoppingListService.findById(UUID.fromString(listId));
     }
 }
