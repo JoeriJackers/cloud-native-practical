@@ -1,5 +1,6 @@
-package com.ezgroceries.shoppinglist.shoppingList;
+package com.ezgroceries.shoppinglist.repositories;
 
+import com.ezgroceries.shoppinglist.domains.ShoppingList;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

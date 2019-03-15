@@ -1,5 +1,8 @@
-package com.ezgroceries.shoppinglist.shoppingList;
+package com.ezgroceries.shoppinglist.services;
 
+import com.ezgroceries.shoppinglist.domains.ShoppingList;
+import com.ezgroceries.shoppinglist.repositories.ShoppingListRepository;
+import com.ezgroceries.shoppinglist.domains.ShoppingListResource;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

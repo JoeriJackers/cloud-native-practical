@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist.cocktailShoppingList;
+package com.ezgroceries.shoppinglist.domains;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

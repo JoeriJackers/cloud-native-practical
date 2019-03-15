@@ -1,5 +1,8 @@
-package com.ezgroceries.shoppinglist.cocktail;
+package com.ezgroceries.shoppinglist.services;
 
+import com.ezgroceries.shoppinglist.domains.Cocktail;
+import com.ezgroceries.shoppinglist.repositories.CocktailRepository;
+import com.ezgroceries.shoppinglist.domains.CocktailResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

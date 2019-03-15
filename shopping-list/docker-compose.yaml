@@ -9,9 +9,9 @@ services:
     ports:
       - "5432:5432"
 
-  api:
-    image: shopping-list:0.0.1-SNAPSHOT
-    hostname: api-server
-    container_name: api-server
-    ports:
-      - "8080:8080"
+#  api:
+#    image: shopping-list:0.0.1-SNAPSHOT
+#    hostname: api-server
+#    container_name: api-server
+#    ports:
+#      - "8080:8080"

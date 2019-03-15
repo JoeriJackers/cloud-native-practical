@@ -1,9 +1,9 @@
-package com.ezgroceries.shoppinglist.cocktailShoppingList;
+package com.ezgroceries.shoppinglist.services;
 
-import com.ezgroceries.shoppinglist.cocktail.CocktailResource;
-import com.ezgroceries.shoppinglist.cocktail.CocktailService;
-import com.ezgroceries.shoppinglist.shoppingList.ShoppingListResource;
-import com.ezgroceries.shoppinglist.shoppingList.ShoppingListService;
+import com.ezgroceries.shoppinglist.domains.CocktailResource;
+import com.ezgroceries.shoppinglist.domains.CocktailShoppingList;
+import com.ezgroceries.shoppinglist.repositories.CocktailShoppingListRepository;
+import com.ezgroceries.shoppinglist.domains.ShoppingListResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

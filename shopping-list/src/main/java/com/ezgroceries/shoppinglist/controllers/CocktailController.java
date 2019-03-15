@@ -1,11 +1,13 @@
-package com.ezgroceries.shoppinglist.cocktail.web;
+package com.ezgroceries.shoppinglist.controllers;
 
-import com.ezgroceries.shoppinglist.cocktail.*;
+import com.ezgroceries.shoppinglist.domains.CocktailDBClient;
+import com.ezgroceries.shoppinglist.domains.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.domains.CocktailResource;
+import com.ezgroceries.shoppinglist.services.CocktailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

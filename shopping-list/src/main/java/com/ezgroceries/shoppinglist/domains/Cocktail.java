@@ -1,7 +1,7 @@
-package com.ezgroceries.shoppinglist.cocktail;
+package com.ezgroceries.shoppinglist.domains;
 
 
-import com.ezgroceries.shoppinglist.entities.StringSetConverter;
+import com.ezgroceries.shoppinglist.helper.StringSetConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
