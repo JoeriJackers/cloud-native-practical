@@ -14,7 +14,6 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class CocktailService {
-    private static final Logger logger = LoggerFactory.getLogger(CocktailService.class);
     private final CocktailRepository cocktailRepository;
 
     @Autowired
@@ -25,7 +24,7 @@ public class CocktailService {
     public List<CocktailResource> findAll() {
         Iterable<Cocktail> cocktails = cocktailRepository.findAll();
         return StreamSupport.stream(cocktails.spliterator(), true)
-                .map(cocktail -> cocktail.mapToCocktailResource())
+                .map(Cocktail::mapToCocktailResource)
                 .collect(Collectors.toList());
     }
 
@@ -34,25 +33,22 @@ public class CocktailService {
         return cocktail.orElse(new Cocktail()).mapToCocktailResource();
     }
 
-    public List<CocktailResource> mergeCocktails(List<CocktailResource> clientCocktails) {
+    public void mergeCocktails(List<CocktailResource> clientCocktails) {
         List<String> knownIds = findAll().stream()
-                .map(cocktail -> cocktail.getCocktailId())
+                .map(CocktailResource::getCocktailId)
                 .collect(Collectors.toList());
 
         List<Cocktail> newCocktails = clientCocktails.stream()
                 .filter(cocktail -> knownIds.indexOf(cocktail.getCocktailId()) < 0)
                 .map(cocktail -> {
-                    Set<String> ingr = new HashSet();
+                    Set<String> ingr = new HashSet<>();
                     if (!cocktail.getIngredients().isEmpty()) {
                         ingr = new HashSet(cocktail.getIngredients());
                     }
-                    Cocktail newCocktail = new Cocktail(null, cocktail.getCocktailId(), cocktail.getName(), ingr);
-                    return newCocktail;
+                    return new Cocktail(null, cocktail.getCocktailId(), cocktail.getName(), ingr);
                 })
                 .collect(Collectors.toList());
 
-        return StreamSupport.stream(cocktailRepository.saveAll(newCocktails).spliterator(), true)
-                .map(cocktail -> cocktail.mapToCocktailResource())
-                .collect(Collectors.toList());
+        cocktailRepository.saveAll(newCocktails);
     }
 }

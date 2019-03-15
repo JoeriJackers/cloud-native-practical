@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/cocktails", produces = "application/json")
 public class CocktailController {
-    static final Logger logger = LoggerFactory.getLogger(CocktailController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CocktailController.class);
     private final CocktailDBClient cocktailDBClient;
     private final CocktailService cocktailService;
 

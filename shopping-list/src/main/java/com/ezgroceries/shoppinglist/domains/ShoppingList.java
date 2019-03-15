@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 
 
@@ -21,6 +21,6 @@ public class ShoppingList {
     private String name;
 
     public ShoppingListResource mapToShoppingListResource() {
-        return new ShoppingListResource(id, name, Arrays.asList());
+        return new ShoppingListResource(id, name, Collections.emptyList());
     }
 }
