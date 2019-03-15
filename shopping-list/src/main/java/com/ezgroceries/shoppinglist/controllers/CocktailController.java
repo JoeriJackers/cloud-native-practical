@@ -14,8 +14,8 @@ import java.util.List;
 @RequestMapping(value = "/cocktails", produces = "application/json")
 public class CocktailController {
     static final Logger logger = LoggerFactory.getLogger(CocktailController.class);
-    CocktailDBClient cocktailDBClient;
-    CocktailService cocktailService;
+    private final CocktailDBClient cocktailDBClient;
+    private final CocktailService cocktailService;
 
     public CocktailController(CocktailDBClient cocktailDBClient, CocktailService cocktailService) {
         this.cocktailDBClient = cocktailDBClient;

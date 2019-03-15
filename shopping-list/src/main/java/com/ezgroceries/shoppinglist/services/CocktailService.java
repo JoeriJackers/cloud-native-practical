@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 @Service
 public class CocktailService {
     private static final Logger logger = LoggerFactory.getLogger(CocktailService.class);
-    private CocktailRepository cocktailRepository;
+    private final CocktailRepository cocktailRepository;
 
     @Autowired
     public CocktailService(CocktailRepository cocktailRepository) {

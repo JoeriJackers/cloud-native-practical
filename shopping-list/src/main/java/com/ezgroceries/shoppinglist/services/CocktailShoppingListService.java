@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class CocktailShoppingListService {
-    private CocktailShoppingListRepository cocktailShoppingListRepository;
-    private CocktailService cocktailService;
-    private ShoppingListService shoppingListService;
+    private final CocktailShoppingListRepository cocktailShoppingListRepository;
+    private final CocktailService cocktailService;
+    private final ShoppingListService shoppingListService;
 
     @Autowired
     public CocktailShoppingListService(CocktailShoppingListRepository cocktailShoppingListRepository, CocktailService cocktailService, ShoppingListService shoppingListService) {

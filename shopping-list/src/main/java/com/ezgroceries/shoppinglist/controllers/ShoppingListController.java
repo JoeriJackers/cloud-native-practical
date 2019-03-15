@@ -14,8 +14,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/shopping-lists")
 public class ShoppingListController {
-    private ShoppingListService shoppingListService;
-    private CocktailShoppingListService cocktailShoppingListService;
+    private final ShoppingListService shoppingListService;
+    private final CocktailShoppingListService cocktailShoppingListService;
 
     @Autowired
     public ShoppingListController(ShoppingListService shoppingListService, CocktailShoppingListService cocktailShoppingListService) {

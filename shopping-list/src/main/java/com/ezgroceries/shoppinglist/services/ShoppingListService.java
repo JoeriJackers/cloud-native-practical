@@ -29,6 +29,7 @@ public class ShoppingListService {
                 .collect(Collectors.toList());
     }
 
+    //TODO refactor
     public ShoppingListResource findById(UUID id) {
         Optional<ShoppingList> shoppingList = shoppingListRepository.findById(id);
         if (shoppingList != null) {

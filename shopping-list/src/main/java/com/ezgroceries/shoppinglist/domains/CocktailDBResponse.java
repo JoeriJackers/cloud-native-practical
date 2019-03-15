@@ -14,18 +14,14 @@ public class CocktailDBResponse {
     @Getter @Setter private List<DrinkResource> drinks;
 
     public List<CocktailResource> getCocktails() {
-        List<CocktailResource> cocktails = new ArrayList<>();
-
         if (drinks == null) {
             logger.debug("No cocktails matching search criteria");
-            return cocktails;
+            return new ArrayList<>();
         }
 
-        for (DrinkResource drink : drinks) {
-            CocktailResource cocktail = drink.mapToCocktail();
-            cocktails.add(cocktail);
-        }
-        return cocktails;
+        return drinks.stream()
+                .map(DrinkResource::mapToCocktail)
+                .collect(Collectors.toList());
     }
 
     @Getter
@@ -69,7 +65,9 @@ public class CocktailDBResponse {
             ingredients.add(strIngredient13);
             ingredients.add(strIngredient14);
             ingredients.add(strIngredient15);
-            ingredients = ingredients.stream().filter(ingr -> !ingr.isEmpty()).collect(Collectors.toList());
+            ingredients = ingredients.stream()
+                    .filter(ingr -> !ingr.isEmpty())
+                    .collect(Collectors.toList());
             return new CocktailResource(null, idDrink, strDrink, strGlass, strInstructions, strDrinkThumb, ingredients);
         }
     }
