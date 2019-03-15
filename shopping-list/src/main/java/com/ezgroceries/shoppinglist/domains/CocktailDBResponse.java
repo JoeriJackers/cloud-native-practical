@@ -2,20 +2,19 @@ package com.ezgroceries.shoppinglist.domains;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class CocktailDBResponse {
-    private static final Logger logger = LoggerFactory.getLogger(CocktailDBResponse.class);
     @Getter @Setter private List<DrinkResource> drinks;
 
     public List<CocktailResource> getCocktails() {
         if (drinks == null) {
-            logger.debug("No cocktails matching search criteria");
+            log.debug("No cocktails matching search criteria");
             return new ArrayList<>();
         }
 

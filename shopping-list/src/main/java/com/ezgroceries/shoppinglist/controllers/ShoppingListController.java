@@ -3,6 +3,7 @@ package com.ezgroceries.shoppinglist.controllers;
 import com.ezgroceries.shoppinglist.domains.CocktailResource;
 import com.ezgroceries.shoppinglist.domains.ShoppingListResource;
 import com.ezgroceries.shoppinglist.services.ShoppingListService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping(value = "/shopping-lists")
 public class ShoppingListController {
     private final ShoppingListService shoppingListService;
-
-    @Autowired
-    public ShoppingListController(ShoppingListService shoppingListService) {
-        this.shoppingListService = shoppingListService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

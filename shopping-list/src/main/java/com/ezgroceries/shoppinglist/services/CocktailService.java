@@ -3,6 +3,7 @@ package com.ezgroceries.shoppinglist.services;
 import com.ezgroceries.shoppinglist.domains.Cocktail;
 import com.ezgroceries.shoppinglist.repositories.CocktailRepository;
 import com.ezgroceries.shoppinglist.domains.CocktailResource;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@AllArgsConstructor
 @Service
 public class CocktailService {
     private final CocktailRepository cocktailRepository;
-
-    @Autowired
-    public CocktailService(CocktailRepository cocktailRepository) {
-        this.cocktailRepository = cocktailRepository;
-    }
 
     public List<CocktailResource> findAll() {
         Iterable<Cocktail> cocktails = cocktailRepository.findAll();
