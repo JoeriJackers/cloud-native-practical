@@ -1,6 +1,6 @@
 package com.ezgroceries.shoppinglist;
 
-import com.ezgroceries.shoppinglist.domains.CocktailDBClient;
+import com.ezgroceries.shoppinglist.clients.CocktailDBClient;
 import com.ezgroceries.shoppinglist.domains.CocktailDBResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
