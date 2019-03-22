@@ -3,6 +3,7 @@ LABEL maintainer="joeri.jackers@gmail.com"
 
 COPY src/ /opt/src/
 COPY pom.xml /opt/
+RUN ls /opt
 WORKDIR /opt
 
 RUN mvn -Dmaven.test.skip=true package
