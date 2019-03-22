@@ -18,7 +18,6 @@ items:
           name: shopping-list-api:0.0.1
       source:
         git:
-          ref: develop
           uri: https://github.com/JoeriJackers/cloud-native-practical.git
         contextDir: shopping-list
         type: Git
