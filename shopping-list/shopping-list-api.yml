@@ -48,6 +48,8 @@ items:
               ports:
                 - containerPort: 8080
                   protocol: TCP
+                - containerPort: 8443
+                  protocol: TCP
               envFrom:
                 - configMapRef:
                     name: shopping-list-api-env
@@ -76,11 +78,11 @@ items:
     metadata:
       name: shopping-list-api-env
     data:
-      ENV: PROD
+      SPRING_ACTIVE_PROFILES: hsqldb
   - apiVersion: v1
     kind: Service
     metadata:
-      name: shopping-list-api
+      name: shopping-list-api-http
     spec:
       ports:
         - protocol: TCP
@@ -90,10 +92,30 @@ items:
       selector:
         app: shopping-list-api
   - apiVersion: v1
+    kind: Service
+    metadata:
+      name: shopping-list-api-https
+    spec:
+      ports:
+        - protocol: TCP
+          port: 443
+          targetPort: 8443
+          type: NodePort
+      selector:
+        app: shopping-list-api
+  - apiVersion: v1
     kind: Route
     metadata:
-      name: shopping-list-api
+      name: shopping-list-api-http
     spec:
       to:
         kind: Service
-        name: shopping-list-api
+        name: shopping-list-api-http
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: shopping-list-api-https
+    spec:
+      to:
+        kind: Service
+        name: shopping-list-api-https
