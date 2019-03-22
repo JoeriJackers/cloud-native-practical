@@ -1,0 +1,100 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      name: shopping-list-api
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      name: shopping-list-api
+      labels:
+        app: shopping-list-api
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: shopping-list-api:0.0.1
+      source:
+        git:
+          ref: develop
+          uri: https://github.com/JoeriJackers/cloud-native-practical.git
+        contextDir: shopping-list
+        type: Git
+      strategy:
+        type: Docker
+      triggers:
+        - type: ConfigChange
+        - github:
+            secret: Password201903
+          type: GitHub
+  - apiVersion: v1
+    kind: DeploymentConfig
+    metadata:
+      name: shopping-list-api
+      labels:
+        app: shopping-list-api
+    spec:
+      replicas: 2
+      template:
+        metadata:
+          labels:
+            app: shopping-list-api
+        spec:
+          containers:
+            - name: shopping-list-api
+              image: docker-registry.default.svc:5000/shopping-list-api-user06/shopping-list-api:0.0.1
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              envFrom:
+                - configMapRef:
+                    name: shopping-list-api-env
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 256Mi
+                limits:
+                  cpu: 1000m
+                  memory: 512Mi
+              readinessProbe:
+                httpGet:
+                  path: /actuator/health
+                  port: 8080
+                initialDelaySeconds: 5
+                timeoutSeconds: 5
+              livenessProbe:
+                httpGet:
+                  path: /actuator/health
+                  port: 8080
+                initialDelaySeconds: 1
+                timeoutSeconds: 1
+                failureTreshold: 2
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: shopping-list-api-env
+    data:
+      ENV: PROD
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: shopping-list-api
+    spec:
+      ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 8080
+          type: NodePort
+      selector:
+        app: shopping-list-api
+  - apiVersion: v1
+    kind: Route
+    metadata:
+      name: shopping-list-api
+    spec:
+      to:
+        kind: Service
+        name: shopping-list-api
+              
