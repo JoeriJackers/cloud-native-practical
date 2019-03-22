@@ -34,7 +34,13 @@ public class CocktailService {
         List<Cocktail> newCocktails = clientCocktails.stream()
                 .filter(cocktail -> knownIds.indexOf(cocktail.getCocktailId()) < 0)
                 .map(cocktail -> {
-                    Cocktail newCocktail = new Cocktail(null, cocktail.getCocktailId(), cocktail.getName(), Collections.emptySet());
+                    Cocktail newCocktail = new Cocktail(null,
+                            cocktail.getCocktailId(),
+                            cocktail.getName(),
+                            cocktail.getGlass(),
+                            cocktail.getInstructions(),
+                            cocktail.getImage(),
+                            Collections.emptySet());
                     if (cocktail.getIngredients().isEmpty()) { return newCocktail; }
                     newCocktail.setIngredients(new HashSet<>(cocktail.getIngredients()));
                     return newCocktail;

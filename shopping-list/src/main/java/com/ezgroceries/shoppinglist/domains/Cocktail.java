@@ -23,12 +23,15 @@ public class Cocktail {
     private UUID id;
     private String idDrink;
     private String name;
+    private String glass;
+    private String instructions;
+    private String image;
 
     @Convert(converter = StringSetConverter.class)
     private Set<String> ingredients;
 
     public CocktailResource mapToCocktailResource() {
-        CocktailResource cocktailResource = new CocktailResource(id, idDrink, name, "", "", "", Collections.emptyList());
+        CocktailResource cocktailResource = new CocktailResource(id, idDrink, name, glass, instructions, image, Collections.emptyList());
         if (ingredients.isEmpty()) { return cocktailResource; }
 
         cocktailResource.setIngredients(new ArrayList<>(ingredients));
