@@ -8,12 +8,12 @@ WORKDIR /opt
 
 #RUN mvn -Dmaven.test.skip=true package
 #
-#FROM openjdk:8-jre-alpine
+FROM openjdk:8-jre-alpine
 #
 #ENV ENV "DEV"
-#COPY --from=builder /opt/target/*.jar /opt/app.jar
+COPY --from=builder /opt/target/*.jar /opt/app.jar
 #
-#EXPOSE 8080
-#EXPOSE 8443
-#
-#CMD ["java", "-jar", "/opt/app.jar"]
+EXPOSE 8080
+EXPOSE 8443
+
+CMD ["java", "-jar", "/opt/app.jar"]
