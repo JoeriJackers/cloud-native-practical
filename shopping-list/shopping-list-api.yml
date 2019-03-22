@@ -15,7 +15,7 @@ items:
       output:
         to:
           kind: ImageStreamTag
-          name: shopping-list-api:0.0.1
+          name: shopping-list-api:0.0.2
       source:
         git:
           uri: https://github.com/JoeriJackers/cloud-native-practical.git
@@ -43,7 +43,7 @@ items:
         spec:
           containers:
             - name: shopping-list-api
-              image: docker-registry.default.svc:5000/integrated-ex-user06/shopping-list-api:0.0.1
+              image: docker-registry.default.svc:5000/integrated-ex-user06/shopping-list-api:0.0.2
               ports:
                 - containerPort: 8080
                   protocol: TCP
