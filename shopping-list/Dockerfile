@@ -1,9 +1,9 @@
 FROM maven:3-jdk-8-alpine as builder
 LABEL maintainer="joeri.jackers@gmail.com"
 
-COPY src /opt/src/
+COPY ./src/ /opt/src/
 COPY pom.xml /opt/
-RUN ls /opt
+RUN ls -lah /opt
 WORKDIR /opt
 
 #RUN mvn -Dmaven.test.skip=true package
