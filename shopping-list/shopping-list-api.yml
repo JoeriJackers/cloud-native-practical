@@ -44,7 +44,7 @@ items:
         spec:
           containers:
             - name: shopping-list-api
-              image: docker-registry.default.svc:5000/shopping-list-api-user06/shopping-list-api:0.0.1
+              image: docker-registry.default.svc:5000/integrated-ex-user06/shopping-list-api:0.0.1
               ports:
                 - containerPort: 8080
                   protocol: TCP
@@ -97,4 +97,3 @@ items:
       to:
         kind: Service
         name: shopping-list-api
-              
