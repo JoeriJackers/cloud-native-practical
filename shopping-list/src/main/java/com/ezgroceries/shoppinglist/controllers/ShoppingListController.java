@@ -4,7 +4,6 @@ import com.ezgroceries.shoppinglist.domains.CocktailResource;
 import com.ezgroceries.shoppinglist.domains.ShoppingListResource;
 import com.ezgroceries.shoppinglist.services.ShoppingListService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +38,6 @@ public class ShoppingListController {
     @PostMapping(value = "/{listId}/cocktails")
     @ResponseStatus(HttpStatus.CREATED)
     public ShoppingListResource createSimpleCocktail(@PathVariable String listId, @RequestBody List<CocktailResource> cocktails) {
-        shoppingListService.addCocktailsToShoppingList(listId, cocktails);
-        return shoppingListService.findById(UUID.fromString(listId));
+        return shoppingListService.addCocktailsToShoppingList(listId, cocktails);
     }
 }

@@ -1,7 +1,7 @@
 package com.ezgroceries.shoppinglist.domains;
 
 
-import com.ezgroceries.shoppinglist.helper.StringSetConverter;
+import com.ezgroceries.shoppinglist.helpers.StringSetConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
