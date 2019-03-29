@@ -38,7 +38,7 @@ public class ShoppingListService {
                 .orElseGet(null);
     }
 
-    public void addCocktailsToShoppingList(String shoppingListId, List<CocktailResource> cocktailResources) {
+    public ShoppingListResource addCocktailsToShoppingList(String shoppingListId, List<CocktailResource> cocktailResources) {
         List<Cocktail> cocktails = cocktailResources.stream()
                 .map(cocktail -> cocktailService.findById(cocktail.getId()).orElse(null))
                 .collect(Collectors.toList());
@@ -48,6 +48,7 @@ public class ShoppingListService {
 
         shoppingList.setCocktails(cocktails);
         shoppingListRepository.save(shoppingList);
+        return findById(UUID.fromString(shoppingListId));
     }
 
     private static ShoppingListResource mapToShoppingListResource(ShoppingList shoppinglist) {
