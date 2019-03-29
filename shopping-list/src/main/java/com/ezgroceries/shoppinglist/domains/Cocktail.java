@@ -11,20 +11,26 @@ import javax.persistence.*;
 import java.util.*;
 
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "cocktail")
 public class Cocktail {
+
     @Id
     @GeneratedValue
     private UUID id;
+
     private String idDrink;
+
     private String name;
+
     private String glass;
+
     private String instructions;
+
     private String image;
 
     @Convert(converter = StringSetConverter.class)

@@ -10,9 +10,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@AllArgsConstructor
+
 @Service
+@AllArgsConstructor
 public class CocktailService {
+
     private final CocktailRepository cocktailRepository;
 
     public List<CocktailResource> findAll() {

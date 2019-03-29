@@ -12,9 +12,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@AllArgsConstructor
+
 @Service
+@AllArgsConstructor
 public class ShoppingListService {
+
     private final ShoppingListRepository shoppingListRepository;
     private final CocktailService cocktailService;
 

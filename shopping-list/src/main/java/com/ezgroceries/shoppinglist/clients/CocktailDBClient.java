@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @FeignClient(name = "cocktailDBCLient", url = "https://www.thecocktaildb.com/api/json/v1/1/", fallback = CocktailDBClient.CocktailDBClientFallback.class)
 @Profile("!Test")
 public interface CocktailDBClient {
+
     @GetMapping(value = "search.php")
     CocktailDBResponse searchCocktails(@RequestParam("s") String search);
 

@@ -9,8 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Slf4j
 public class CocktailDBResponse {
+
     @Getter @Setter private List<DrinkResource> drinks;
 
     public List<CocktailResource> getCocktails() {

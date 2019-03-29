@@ -9,11 +9,13 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
+
 @Getter
 @Setter
 @JsonInclude(Include.NON_EMPTY)
 @AllArgsConstructor
 public class CocktailResource {
+
     private UUID id;
     private String cocktailId;
     private String name;

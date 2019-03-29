@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 @AllArgsConstructor
 @Slf4j
-@RestController
 @RequestMapping(value = "/cocktails", produces = "application/json")
 public class CocktailController {
+
     private final CocktailDBClient cocktailDBClient;
     private final CocktailService cocktailService;
 
