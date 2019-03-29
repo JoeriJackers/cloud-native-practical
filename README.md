@@ -5,7 +5,6 @@ Workshop that combines some cloud native theoretical and practical modules. Focu
 ## Prerequisites
 
 Following tools should already be installed
-
 * GitHub account
 * Docker
 * IntelliJ
