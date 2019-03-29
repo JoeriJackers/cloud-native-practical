@@ -11,13 +11,14 @@ import java.util.List;
 import java.util.UUID;
 
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "shopping_list")
 public class ShoppingList {
+
     @Id
     @GeneratedValue
     private UUID id;

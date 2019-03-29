@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
 @RestController
+@AllArgsConstructor
 @RequestMapping(value = "/shopping-lists")
 public class ShoppingListController {
+
     private final ShoppingListService shoppingListService;
 
     @PostMapping
